@@ -48,7 +48,7 @@ deploy-to-kubernetes:
         insecure-skip-tls-verify: true
         command: apply -f $WERCKER_OUTPUT_DIR/kubernetes/
 
-    # Tell Kubernetes that we're going to be very very very patient (we're hunting rabbits)
+    # Tell Kubernetes that we're going to be very very very patient (we're hunting rabbits!)
     - kubectl:
         name: set deployment timeout
         server: $OKE_MASTER
