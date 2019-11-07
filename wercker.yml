@@ -49,12 +49,12 @@ deploy-to-kubernetes:
         command: apply -f $WERCKER_OUTPUT_DIR/kubernetes/
 
     # Tell Kubernetes that we're going to be very very very patient (we're hunting rabbits!)
-    #- kubectl:
-    #    name: set deployment timeout
-    #    server: $OKE_MASTER
-    #    token: $OKE_TOKEN
-    #    insecure-skip-tls-verify: true
-    #    command: patch deployment/get-ip -p '{"spec":{"progressDeadlineSeconds":300}}'
+    - kubectl:
+        name: set deployment timeout
+        server: $OKE_MASTER
+        token: $OKE_TOKEN
+        insecure-skip-tls-verify: true
+        command: patch deployment/get-ip -p '{"spec":{"progressDeadlineSeconds":200}}'
 
     # Watch the Kubernetes deployment. Once the pods are considered healthy the step will exit 0
     # If they aren't healthy within 60 seconds, it will exit with a non 0 exit code, and cause the run to fail.
